@@ -48,7 +48,7 @@ using BizHawk.WinForms.Controls;
 
 namespace BizHawk.Client.EmuHawk
 {
-	public partial class MainForm : FormBase, IDialogParent, IMainFormForApi, IMainFormForTools, IMainFormForRetroAchievements
+	public partial class MainForm : FormBase, IDialogParent, IMainFormForApi, IMainFormForTools, IMainFormForRetroAchievements, IGuiApi
 	{
 		private static readonly FilesystemFilterSet EmuHawkSaveStatesFSFilterSet = new(FilesystemFilter.EmuHawkSaveStates);
 
@@ -2390,6 +2390,12 @@ namespace BizHawk.Client.EmuHawk
 				_lastVirtualSize = currVirtualSize;
 				FrameBufferResized();
 			}
+
+			MessagePosition mp = new();
+			mp.X = 10;
+			mp.Y = 10;
+			
+			OSD.AddGuiText("Hello", mp, Color.Black, Color.White);
 
 			//rendering flakes out egregiously if we have a zero size
 			//can we fix it later not to?
@@ -4905,6 +4911,8 @@ namespace BizHawk.Client.EmuHawk
 
 		private IRetroAchievements RA { get; set; }
 
+		public bool HasGUISurface => throw new NotImplementedException();
+
 		private void OpenRetroAchievements()
 		{
 			RA = RetroAchievements.CreateImpl(this, InputManager, Tools, () => Config, RetroAchievementsMenuItem.DropDownItems, () =>
@@ -4916,6 +4924,191 @@ namespace BizHawk.Client.EmuHawk
 			});
 
 			RA?.Restart();
+		}
+
+		public void ToggleCompositingMode()
+		{
+			throw new NotImplementedException();
+		}
+
+		public ImageAttributes GetAttributes()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetAttributes(ImageAttributes a)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void WithSurface(DisplaySurfaceID surfaceID, Action drawingCallsFunc)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DrawNew(string name, bool clear = true)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DrawFinish()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetPadding(int all)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetPadding(int x, int y)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetPadding(int l, int t, int r, int b)
+		{
+			throw new NotImplementedException();
+		}
+
+		public (int Left, int Top, int Right, int Bottom) GetPadding()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void AddMessage(string message, int? duration = null)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void ClearGraphics(DisplaySurfaceID? surfaceID = null)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void ClearText()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetDefaultForegroundColor(Color color)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetDefaultBackgroundColor(Color color)
+		{
+			throw new NotImplementedException();
+		}
+
+		public Color? GetDefaultTextBackground()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetDefaultTextBackground(Color color)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetDefaultPixelFont(string fontfamily)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DrawBezier(Point p1, Point p2, Point p3, Point p4, Color? color = null, DisplaySurfaceID? surfaceID = null)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DrawBeziers(Point[] points, Color? color = null, DisplaySurfaceID? surfaceID = null)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DrawBox(int x, int y, int x2, int y2, Color? line = null, Color? background = null, DisplaySurfaceID? surfaceID = null)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DrawEllipse(int x, int y, int width, int height, Color? line = null, Color? background = null, DisplaySurfaceID? surfaceID = null)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DrawIcon(string path, int x, int y, int? width = null, int? height = null, DisplaySurfaceID? surfaceID = null)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DrawImage(Image img, int x, int y, int? width = null, int? height = null, bool cache = true, DisplaySurfaceID? surfaceID = null)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DrawImage(string path, int x, int y, int? width = null, int? height = null, bool cache = true, DisplaySurfaceID? surfaceID = null)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void ClearImageCache()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DrawImageRegion(Image img, int source_x, int source_y, int source_width, int source_height, int dest_x, int dest_y, int? dest_width = null, int? dest_height = null, DisplaySurfaceID? surfaceID = null)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DrawImageRegion(string path, int source_x, int source_y, int source_width, int source_height, int dest_x, int dest_y, int? dest_width = null, int? dest_height = null, DisplaySurfaceID? surfaceID = null)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DrawLine(int x1, int y1, int x2, int y2, Color? color = null, DisplaySurfaceID? surfaceID = null)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DrawAxis(int x, int y, int size, Color? color = null, DisplaySurfaceID? surfaceID = null)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DrawPie(int x, int y, int width, int height, int startangle, int sweepangle, Color? line = null, Color? background = null, DisplaySurfaceID? surfaceID = null)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DrawPixel(int x, int y, Color? color = null, DisplaySurfaceID? surfaceID = null)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DrawPolygon(Point[] points, Color? line = null, Color? background = null, DisplaySurfaceID? surfaceID = null)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DrawRectangle(int x, int y, int width, int height, Color? line = null, Color? background = null, DisplaySurfaceID? surfaceID = null)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DrawString(int x, int y, string message, Color? forecolor = null, Color? backcolor = null, int? fontsize = null, string fontfamily = null, string fontstyle = null, string horizalign = null, string vertalign = null, DisplaySurfaceID? surfaceID = null)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DrawText(int x, int y, string message, Color? forecolor = null, Color? backcolor = null, string fontfamily = null, DisplaySurfaceID? surfaceID = null)
+		{
+			throw new NotImplementedException();
+		}
+
+		void IGuiApi.Text(int x, int y, string message, Color? forecolor, string anchor)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }
